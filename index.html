@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vishnu Pragada · PostgreSQL DBA</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0b0f17;
+      color: #e9edf5;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      padding: 1.8rem 2rem;
+    }
+
+    /* Modern gradient accent */
+    .gradient-text {
+      background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* header / nav */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 0 1.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.6rem;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .logo i {
+      color: #5ee7df;
+      font-size: 1.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-weight: 500;
+      color: #a0aec0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.2s ease;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #5ee7df;
+    }
+
+    /* hero section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 0 3rem;
+      gap: 2rem;
+    }
+
+    .hero-content {
+      flex: 1 1 400px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(94, 231, 223, 0.12);
+      color: #5ee7df;
+      border-radius: 40px;
+      padding: 0.35rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(94, 231, 223, 0.25);
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .hero h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #a0aec0;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero h2 i {
+      color: #5ee7df;
+      font-size: 1.1rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 1.8rem 0 1.8rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1rem;
+      color: #cbd5e0;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.5rem 1rem 0.5rem 0.8rem;
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .contact-item i {
+      color: #5ee7df;
+      width: 1.2rem;
+      text-align: center;
+    }
+
+    .contact-item:hover {
+      background: rgba(94, 231, 223, 0.08);
+      border-color: rgba(94, 231, 223, 0.3);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .stat-item {
+      text-align: left;
+      border-left: 3px solid #5ee7df;
+      padding-left: 1rem;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: #a0aec0;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-avatar {
+      flex: 0 0 240px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .avatar-ring {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #5ee7df, #b490ca);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      box-shadow: 0 20px 35px -10px rgba(94, 231, 223, 0.3);
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #0f141f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4.5rem;
+      font-weight: 600;
+      color: #5ee7df;
+      border: 2px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* section styles */
+    section {
+      margin: 4rem 0;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-title i {
+      color: #5ee7df;
+      font-size: 1.8rem;
+    }
+
+    .section-title span {
+      background: linear-gradient(135deg, #5ee7df, #b490ca);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* summary card */
+    .summary-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 28px;
+      padding: 2rem 2rem;
+      backdrop-filter: blur(4px);
+      font-size: 1.05rem;
+      color: #cbd5e0;
+      line-height: 1.7;
+      box-shadow: 0 15px 30px -15px rgba(0, 0, 0, 0.6);
+    }
+
+    .summary-card strong {
+      color: #5ee7df;
+      font-weight: 600;
+    }
+
+    /* skills grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-category {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      padding: 1.5rem 1.3rem;
+      transition: transform 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .skill-category:hover {
+      transform: translateY(-4px);
+      border-color: rgba(94, 231, 223, 0.3);
+      background: rgba(94, 231, 223, 0.03);
+    }
+
+    .skill-category h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #5ee7df;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-category h3 i {
+      font-size: 1rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .skill-tag {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0.35rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #e2e8f0;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .skill-tag:hover {
+      background: rgba(94, 231, 223, 0.1);
+      border-color: #5ee7df;
+    }
+
+    /* experience timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .timeline-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 24px;
+      padding: 1.8rem 2rem;
+      position: relative;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .timeline-item:hover {
+      border-color: rgba(94, 231, 223, 0.25);
+      background: rgba(94, 231, 223, 0.02);
+    }
+
+    .timeline-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-role {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .timeline-role i {
+      color: #5ee7df;
+      font-size: 1.2rem;
+    }
+
+    .timeline-company {
+      font-weight: 500;
+      color: #b490ca;
+      margin-left: 0.4rem;
+    }
+
+    .timeline-date {
+      font-size: 0.9rem;
+      color: #a0aec0;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.25rem 1rem;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      white-space: nowrap;
+    }
+
+    .timeline-desc {
+      color: #cbd5e0;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      list-style: none;
+    }
+
+    .timeline-desc li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-desc li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #5ee7df;
+      font-size: 1rem;
+    }
+
+    /* education */
+    .edu-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 24px;
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.5rem;
+      transition: border-color 0.2s;
+    }
+
+    .edu-card:hover {
+      border-color: rgba(94, 231, 223, 0.25);
+    }
+
+    .edu-icon {
+      font-size: 2.8rem;
+      color: #5ee7df;
+      background: rgba(94, 231, 223, 0.08);
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 30px;
+    }
+
+    .edu-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 0.3rem;
+    }
+
+    .edu-content p {
+      color: #a0aec0;
+      font-size: 1rem;
+    }
+
+    .edu-content .edu-year {
+      color: #5ee7df;
+      font-weight: 500;
+      margin-top: 0.3rem;
+    }
+
+    /* footer */
+    .footer {
+      text-align: center;
+      padding: 2.5rem 0 1.5rem;
+      color: #6b7a8f;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    .footer i {
+      color: #5ee7df;
+      margin: 0 0.2rem;
+    }
+
+    /* back to top button */
+    .top-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: rgba(94, 231, 223, 0.15);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(94, 231, 223, 0.3);
+      color: #5ee7df;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      opacity: 0;
+      visibility: hidden;
+      box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.5);
+      z-index: 99;
+    }
+
+    .top-btn.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .top-btn:hover {
+      background: #5ee7df;
+      color: #0b0f17;
+      transform: scale(1.05);
+    }
+
+    /* responsive */
+    @media (max-width: 750px) {
+      .container {
+        padding: 1.2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .nav-links {
+        gap: 1.2rem;
+      }
+
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .hero h2 {
+        justify-content: center;
+      }
+
+      .contact-info {
+        justify-content: center;
+      }
+
+      .hero-stats {
+        justify-content: center;
+      }
+
+      .stat-item {
+        text-align: center;
+        border-left: none;
+        border-bottom: 3px solid #5ee7df;
+        padding-left: 0;
+        padding-bottom: 0.4rem;
+      }
+
+      .timeline-header {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-item {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      .hero-avatar .avatar-ring {
+        width: 150px;
+        height: 150px;
+      }
+
+      .avatar-inner {
+        font-size: 3rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <i class="fas fa-database"></i> <span class="gradient-text">Vishnu Pragada</span>
+      </div>
+      <div class="nav-links">
+        <a href="#summary">Summary</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-bolt"></i> PostgreSQL DBA · 4+ years
+        </div>
+        <h1>
+          <span class="gradient-text">Vishnu</span> Pragada
+        </h1>
+        <h2>
+          <i class="fas fa-server"></i> Systems Engineer · Database Administrator
+        </h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-phone-alt"></i> +91 7036071360
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i> vishnupragada10@gmail.com
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i> Hyderabad, India
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number">4+</div>
+            <div class="stat-label">Years Exp</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Uptime</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">PG 13‑17</div>
+            <div class="stat-label">Versions</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-avatar">
+        <div class="avatar-ring">
+          <div class="avatar-inner">
+            <i class="fas fa-user-astronaut"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Summary -->
+    <section id="summary" class="reveal">
+      <div class="section-title">
+        <i class="fas fa-terminal"></i> <span>Summary</span>
+      </div>
+      <div class="summary-card">
+        Performance-driven Systems Engineer with over <strong>4 years</strong> of specialized experience in
+        <strong>PostgreSQL Database Administration</strong> at Tata Consultancy Services (TCS). Proven expertise in
+        managing large-scale production, testing, and development environments to ensure optimal performance and
+        reliability. Proficient in implementing high-availability configurations, robust backup and recovery
+        strategies using <strong>PgBackRest</strong>, and performance tuning techniques to achieve <strong>100%
+        database uptime</strong>. Committed to leveraging technical skills to drive operational excellence and
+        support business objectives.
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="reveal">
+      <div class="section-title">
+        <i class="fas fa-cogs"></i> <span>Technical Skills</span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3><i class="fas fa-database"></i> Databases</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">PostgreSQL 13-17+</span>
+            <span class="skill-tag">RDBMS Architecture</span>
+            <span class="skill-tag">MVCC</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-sync-alt"></i> High Availability</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Streaming Replication</span>
+            <span class="skill-tag">Failover / Switchover</span>
+            <span class="skill-tag">Disaster Recovery</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-linux"></i> Operating Systems</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">CentOS 8/9</span>
+            <span class="skill-tag">Windows 10</span>
+            <span class="skill-tag">UNIX/Linux</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-arrow-up"></i> Upgrades & Migration</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">pg_upgrade</span>
+            <span class="skill-tag">Version Migration</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-archive"></i> Backup & Recovery</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">PgBackRest</span>
+            <span class="skill-tag">pg_dump / pg_restore</span>
+            <span class="skill-tag">pg_basebackup</span>
+            <span class="skill-tag">PITR</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-tachometer-alt"></i> Performance Tuning</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Query Optimization</span>
+            <span class="skill-tag">Indexing</span>
+            <span class="skill-tag">Vacuum / Reindex</span>
+            <span class="skill-tag">Analyze</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-tools"></i> Tools</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">pgAdmin</span>
+            <span class="skill-tag">Putty / MobaXterm</span>
+            <span class="skill-tag">WinSCP</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-shield-alt"></i> Security</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Role-based Access</span>
+            <span class="skill-tag">Auditing</span>
+            <span class="skill-tag">Grants/Revoke</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="reveal">
+      <div class="section-title">
+        <i class="fas fa-briefcase"></i> <span>Work Experience</span>
+      </div>
+      <div class="timeline">
+        <!-- TCS Current -->
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <div class="timeline-role">
+              <i class="fas fa-database"></i> Database Administrator
+              <span class="timeline-company">@ Tata Consultancy Services</span>
+            </div>
+            <div class="timeline-date">05/2023 – Present</div>
+          </div>
+          <ul class="timeline-desc">
+            <li>Monitoring and maintaining DBs for optimal performance, ensuring 100% availability.</li>
+            <li>Installed, configured and maintained PostgreSQL 12–17 versions.</li>
+            <li>Proficient with backup & recovery using pg_dump, pg_dumpall, pg_basebackup, pg_restore and psql.</li>
+            <li>Creating database objects, and maintaining user privileges and roles.</li>
+            <li>Deploying different extensions on the database server.</li>
+            <li>Worked on changes implementation on postgresql.conf and pg_hba.conf as per requirement.</li>
+            <li>Performed maintenance activities like Vacuum, Vacuum full, Analyze and Reindex.</li>
+            <li>Monitoring database performance using pgAdmin and custom scripts.</li>
+            <li>Configuring and managing Streaming Replication.</li>
+            <li>Knowledge in Disaster Recovery (DR) activities and primary-standby switchover/failover.</li>
+            <li>PostgreSQL database upgrades using pg_upgrade, ensuring smooth version migration.</li>
+          </ul>
+        </div>
+        <!-- TCS previous -->
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <div class="timeline-role">
+              <i class="fas fa-database"></i> Database Administrator
+              <span class="timeline-company">@ Tata Consultancy Services</span>
+            </div>
+            <div class="timeline-date">03/2022 – 04/2023</div>
+          </div>
+          <ul class="timeline-desc">
+            <li>Monitored and managed production database 24/7, providing on-call support.</li>
+            <li>Experience in monitoring and maintaining development, testing and production environments.</li>
+            <li>Worked on Replication and Log shipping monitoring.</li>
+            <li>Executed backups using pg_dump and restored data with pg_restore.</li>
+            <li>Performed backups using pg_basebackup and conducted restoration.</li>
+            <li>Installing Postgres database in CentOS server.</li>
+            <li>Creation of roles and giving Grant/Revoke permissions based on requirement.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="reveal">
+      <div class="section-title">
+        <i class="fas fa-graduation-cap"></i> <span>Education</span>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">
+          <i class="fas fa-university"></i>
+        </div>
+        <div class="edu-content">
+          <h3>Bachelor of Technology</h3>
+          <p>Krishna Chaitanya Institute Of Technology & Sciences (JNTUK)</p>
+          <p class="edu-year">2017 – 2021</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>
+        <i class="fas fa-database"></i> Vishnu Pragada · PostgreSQL DBA
+        <i class="fas fa-heart" style="color: #b490ca;"></i>
+      </p>
+      <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+        Ready to ensure 100% database uptime for your team.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Back to top -->
+  <div class="top-btn" id="topBtn">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    (function() {
+      // Scroll reveal
+      const reveals = document.querySelectorAll('.reveal');
+      const revealOnScroll = () => {
+        const windowHeight = window.innerHeight;
+        const revealPoint = 100;
+        reveals.forEach(el => {
+          const top = el.getBoundingClientRect().top;
+          if (top < windowHeight - revealPoint) {
+            el.classList.add('active');
+          } else {
+            el.classList.remove('active');
+          }
+        });
+      };
+      window.addEventListener('scroll', revealOnScroll);
+      window.addEventListener('load', revealOnScroll);
+
+      // Back to top
+      const topBtn = document.getElementById('topBtn');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          topBtn.classList.add('show');
+        } else {
+          topBtn.classList.remove('show');
+        }
+      });
+      topBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Smooth anchor navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
