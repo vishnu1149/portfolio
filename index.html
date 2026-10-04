@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vishnu Pragada · PostgreSQL DBA</title>
-  <!-- Google Fonts & Font Awesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
@@ -33,7 +32,6 @@
       padding: 1.8rem 2rem;
     }
 
-    /* Modern gradient accent */
     .gradient-text {
       background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
       -webkit-background-clip: text;
@@ -41,7 +39,7 @@
       background-clip: text;
     }
 
-    /* header / nav */
+    /* Navbar */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -82,7 +80,7 @@
       color: #5ee7df;
     }
 
-    /* hero section */
+    /* Hero */
     .hero {
       display: flex;
       flex-wrap: wrap;
@@ -189,6 +187,55 @@
       letter-spacing: 0.04em;
     }
 
+    /* Download Resume Button */
+    .resume-download {
+      margin-top: 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
+      color: #0b0f17;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: 60px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      box-shadow: 0 10px 25px -8px rgba(94, 231, 223, 0.5);
+      letter-spacing: 0.01em;
+    }
+
+    .btn-download i {
+      font-size: 1rem;
+    }
+
+    .btn-download:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 30px -10px rgba(94, 231, 223, 0.65);
+      filter: brightness(1.08);
+    }
+
+    .btn-download:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 18px -6px rgba(94, 231, 223, 0.5);
+    }
+
+    .btn-download .file-name {
+      font-weight: 500;
+      opacity: 0.85;
+      font-size: 0.85rem;
+    }
+
+    /* Hero Avatar */
     .hero-avatar {
       flex: 0 0 240px;
       display: flex;
@@ -222,7 +269,7 @@
       border: 2px solid rgba(255, 255, 255, 0.05);
     }
 
-    /* section styles */
+    /* Sections */
     section {
       margin: 4rem 0;
     }
@@ -249,7 +296,6 @@
       background-clip: text;
     }
 
-    /* summary card */
     .summary-card {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.06);
@@ -267,7 +313,7 @@
       font-weight: 600;
     }
 
-    /* skills grid */
+    /* Skills */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -326,7 +372,7 @@
       border-color: #5ee7df;
     }
 
-    /* experience timeline */
+    /* Experience */
     .timeline {
       display: flex;
       flex-direction: column;
@@ -362,6 +408,7 @@
       display: flex;
       align-items: center;
       gap: 0.6rem;
+      flex-wrap: wrap;
     }
 
     .timeline-role i {
@@ -406,7 +453,7 @@
       font-size: 1rem;
     }
 
-    /* education */
+    /* Education */
     .edu-card {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.06);
@@ -453,7 +500,7 @@
       margin-top: 0.3rem;
     }
 
-    /* footer */
+    /* Footer */
     .footer {
       text-align: center;
       padding: 2.5rem 0 1.5rem;
@@ -468,7 +515,7 @@
       margin: 0 0.2rem;
     }
 
-    /* back to top button */
+    /* Back to top */
     .top-btn {
       position: fixed;
       bottom: 2rem;
@@ -503,7 +550,41 @@
       transform: scale(1.05);
     }
 
-    /* responsive */
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: rgba(15, 20, 31, 0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(94, 231, 223, 0.4);
+      color: #e9edf5;
+      padding: 0.9rem 1.6rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+      z-index: 200;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast i {
+      color: #5ee7df;
+      font-size: 1.1rem;
+    }
+
+    /* Responsive */
     @media (max-width: 750px) {
       .container {
         padding: 1.2rem;
@@ -547,6 +628,10 @@
         padding-bottom: 0.4rem;
       }
 
+      .resume-download {
+        justify-content: center;
+      }
+
       .timeline-header {
         flex-direction: column;
         gap: 0.5rem;
@@ -575,9 +660,14 @@
       .skills-grid {
         grid-template-columns: 1fr;
       }
+
+      .btn-download {
+        font-size: 0.85rem;
+        padding: 0.75rem 1.4rem;
+      }
     }
 
-    /* scroll reveal */
+    /* Scroll reveal */
     .reveal {
       opacity: 0;
       transform: translateY(25px);
@@ -605,7 +695,7 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <header class="hero">
       <div class="hero-content">
         <div class="hero-badge">
@@ -628,6 +718,16 @@
             <i class="fas fa-map-marker-alt"></i> Hyderabad, India
           </div>
         </div>
+
+        <!-- Download Resume Button -->
+        <div class="resume-download">
+          <a href="Vishnu_Resume.pdf" download="Vishnu_Resume.pdf" class="btn-download" id="downloadResumeBtn">
+            <i class="fas fa-file-download"></i>
+            Download Resume
+            <span class="file-name">(Vishnu_Resume.pdf)</span>
+          </a>
+        </div>
+
         <div class="hero-stats">
           <div class="stat-item">
             <div class="stat-number">4+</div>
@@ -748,7 +848,6 @@
         <i class="fas fa-briefcase"></i> <span>Work Experience</span>
       </div>
       <div class="timeline">
-        <!-- TCS Current -->
         <div class="timeline-item">
           <div class="timeline-header">
             <div class="timeline-role">
@@ -771,7 +870,6 @@
             <li>PostgreSQL database upgrades using pg_upgrade, ensuring smooth version migration.</li>
           </ul>
         </div>
-        <!-- TCS previous -->
         <div class="timeline-item">
           <div class="timeline-header">
             <div class="timeline-role">
@@ -819,12 +917,22 @@
       <p style="margin-top: 0.5rem; font-size: 0.8rem;">
         Ready to ensure 100% database uptime for your team.
       </p>
+      <p style="margin-top: 1rem;">
+        <a href="Vishnu_Resume.pdf" download="Vishnu_Resume.pdf" class="btn-download" style="font-size: 0.85rem; padding: 0.6rem 1.4rem;">
+          <i class="fas fa-file-download"></i> Download Resume (PDF)
+        </a>
+      </p>
     </footer>
   </div>
 
   <!-- Back to top -->
   <div class="top-btn" id="topBtn">
     <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i> <span id="toastMsg">Resume download started…</span>
   </div>
 
   <script>
@@ -871,6 +979,32 @@
           }
         });
       });
+
+      // Toast helper
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      let toastTimer = null;
+
+      function showToast(message, iconClass) {
+        toastMsg.textContent = message;
+        const icon = toast.querySelector('i');
+        icon.className = iconClass || 'fas fa-check-circle';
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3200);
+      }
+
+      // Handle all download links
+      document.querySelectorAll('a[download]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          const fileName = this.getAttribute('download') || 'Vishnu_Resume.pdf';
+          // Let the native download proceed. Show toast feedback.
+          showToast('Downloading ' + fileName + ' …', 'fas fa-file-download');
+        });
+      });
+
     })();
   </script>
 </body>
